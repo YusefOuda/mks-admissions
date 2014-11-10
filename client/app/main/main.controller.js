@@ -2,21 +2,11 @@
 
 angular.module('admissionsApp')
   .controller('MainCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [];
+    
+    $scope.editor = ace.edit("editor");
+    $scope.editor.getSession().setMode("ace/mode/javascript");
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
-
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
-
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
+    $scope.submit = function() {
+      console.log($scope.editor.getValue());
     };
   });
