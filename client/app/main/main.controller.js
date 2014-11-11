@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('admissionsApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, Modal) {
     
     $scope.editor = ace.edit('editor');
     $scope.editor.getSession().setMode('ace/mode/javascript');
@@ -33,5 +33,20 @@ angular.module('admissionsApp')
             console.log("data: ", data.answer);
         }
       });
+
+    //Ask Yusef how this code works. 
+    //There is a promise somewhere, or asynchronous thing
+    //That you need to have call your modal function.
+    //For now, you're using dummy values.
+
+      $scope.testInfo = {
+        full_name: "Brian Patterson",
+        email: "brianpatterson2013@gmail.com"
+      }
+
+      var ngModalsAreFuckinWeird = Modal.confirm.delete();
+      ngModalsAreFuckinWeird();
+
+
     };
   });
