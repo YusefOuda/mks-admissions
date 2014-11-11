@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('admissionsApp')
-  .controller('MainCtrl', function ($scope, Modal, codeVerifier, userService) {
+  .controller('MainCtrl', function ($scope, Modal, codeVerifier, userService, cookieService) {
     
     $scope.editor = ace.edit('editor');
     $scope.editor.getSession().setMode('ace/mode/javascript');
@@ -16,7 +16,10 @@ angular.module('admissionsApp')
         if (codeVerifier.checkCorrectness($scope.userAnswer)){
           answerModal = Modal.confirm.correct(function() {
             $scope.userAnswer.current_challenge = 2;
-            userService.createUser($scope.userAnswer);
+            userService.createUser($scope.userAnswer)
+              .success(function(data, status, headers, config) {
+                cookieService.setCookie(data._id);
+              });
           });
         }else {
           answerModal = Modal.confirm.incorrect();
