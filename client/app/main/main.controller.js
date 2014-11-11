@@ -10,13 +10,13 @@ angular.module('admissionsApp')
       var code = $scope.editor.getValue();
 
       var wrapCode = function (code) {
-        var result = code + ";\ntry {";
-        result += "postMessage({ answer: getContactInfo() });";
-        result += "} catch (e) {" +
-          "var trace = printStackTrace({e: e});" +
-          "postMessage({ error: { name: e.name, message: e.message}, trace: trace });" +
-        "}";
-        result += "; postMessage('__terminate__');\n";
+        var result = code + ';\ntry {';
+        result += 'postMessage({ answer: getContactInfo() });';
+        result += '} catch (e) {' +
+          'var trace = printStackTrace({e: e});' +
+          'postMessage({ error: { name: e.name, message: e.message}, trace: trace });' +
+        '}';
+        result += '; postMessage("__terminate__");\n';
         return result;
       };
 
@@ -28,9 +28,9 @@ angular.module('admissionsApp')
         ],
         callback: function(data, error) {
           if (data && data.error)
-            console.log("error: ", data.error);
+            $scope.userError = data.error;
           if (data && data.answer)
-            console.log("data: ", data.answer);
+            $scope.userAnswer = data.answer;
         }
       });
 
@@ -40,12 +40,13 @@ angular.module('admissionsApp')
     //For now, you're using dummy values.
 
       $scope.testInfo = {
-        full_name: "Brian Patterson",
-        email: "brianpatterson2013@gmail.com"
-      }
+        fullName: 'Brian Patterson',
+        email: 'brianpatterson2013@gmail.com'
+      };
 
-      var ngModalsAreFuckinWeird = Modal.confirm.delete();
-      ngModalsAreFuckinWeird();
+      var ngModals = Modal.confirm.correct();
+      // var badModal = Modal.confirm.incorrect();
+      ngModals($scope.testInfo);
 
 
     };
