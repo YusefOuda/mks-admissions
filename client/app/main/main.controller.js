@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('admissionsApp')
-  .controller('MainCtrl', function ($scope, Modal) {
+  .controller('MainCtrl', function ($scope, Modal, userService) {
     
     $scope.editor = ace.edit('editor');
     $scope.editor.getSession().setMode('ace/mode/javascript');
@@ -36,7 +36,10 @@ angular.module('admissionsApp')
             //you refactor the editor stuff into a service
             var answerModal;
             if (checkCorrectness($scope.userAnswer)){
-              answerModal = Modal.confirm.correct();
+              answerModal = Modal.confirm.correct(function() {
+                $scope.userAnswer.current_challenge = 2;
+                userService.createUser($scope.userAnswer);
+              });
             }else {
               answerModal = Modal.confirm.incorrect();
             }

@@ -6,20 +6,23 @@
           Create an object with the following properties:
         </p>
         <p>
-          full_name, email, skype, and github.
+          fullName, email, skype, and github.
         </p>
         <p>
-          Enter your real info for the values and we will register you as a prospective student. Github can be null.
+          Each of these properties should have strings as their values, which correspond to your information. If you don't have a GitHub account, you may set its value as null.
         </p>
       </div>
       <div class="editor-wrapper">
-        <div id="editor">
-		function getContactInfo() {
-  			// Modify this object to include your name and email
-  			var info = {};
-  			return info;
-		}
-		</div>
+        <div id="editor">function getContactInfo() {
+    // Modify this object to include your name and email
+    var info = {
+        fullName: "Yusef Ouda",
+        email: "yiouda92@gmail.com",
+        skype: "yusef.ouda",
+        github: "YusefOuda"
+    };
+    return info;
+}</div>
         <button class="submit" ng-click="submit()">Submit</button>
       </div>
     </div>
