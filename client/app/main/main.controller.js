@@ -32,37 +32,30 @@ angular.module('admissionsApp')
           }
           if (data && data.answer) {
             $scope.userAnswer = data.answer;
-            checkCorrectness($scope.userAnswer);
+            //remember to refactor the following if else block back out of this callback when 
+            //you refactor the editor stuff into a service
+            var answerModal;
+            if (checkCorrectness($scope.userAnswer)){
+              answerModal = Modal.confirm.correct();
+            }else {
+              answerModal = Modal.confirm.incorrect();
+            }
+            answerModal($scope.userAnswer);
+
           }
         }
       });
 
       var checkCorrectness = function(answer) {
         var objectLength = Object.keys(answer).length;
+        var isCorrect = false;
         if (objectLength === 4) {
-          if (answer.hasOwnProperty('fullName') && answer.hasOwnProperty('email') 
-            && answer.hasOwnProperty('skype') && answer.hasOwnProperty('github')) {
-            $scope.isCorrect = true;
-          } else {
-            $scope.isCorrect = false;
+          if (answer.hasOwnProperty('fullName') && answer.hasOwnProperty('email') &&
+            answer.hasOwnProperty('skype') && answer.hasOwnProperty('github')) {
+            isCorrect = true;
           }
-        } else {
-          $scope.isCorrect = false;
         }
+        return isCorrect;
       };
-
-    //Ask Yusef how this code works. 
-    //There is a promise somewhere, or asynchronous thing
-    //That you need to have call your modal function.
-    //For now, you're using dummy values.
-
-      $scope.testInfo = {
-        fullName: 'Brian Patterson',
-        email: 'brianpatterson2013@gmail.com'
-      };
-
-      var ngModals = Modal.confirm.correct();
-      // var badModal = Modal.confirm.incorrect();
-      ngModals($scope.testInfo);
     };
   });

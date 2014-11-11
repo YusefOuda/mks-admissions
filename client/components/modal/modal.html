@@ -3,16 +3,11 @@
   <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
 </div>
 <div class="modal-body">
+  <div ng-repeat="(key, value) in modal.data">
+    {{key}}: {{value}}
+    <BR>
+  </div>
   <p ng-if="modal.text" ng-bind="modal.text"></p>
-  <div ng-if="modal.error">
-    
-  </div>
-  <div ng-if="modal.data" ng-bind-html="modal.data">
-    <!-- <div ng-repeat="data">
-      
-    </div> -->
-    {{modal.data}}
-  </div>
 </div>
 <div class="modal-footer">
   <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>

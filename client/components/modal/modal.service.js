@@ -51,6 +51,7 @@ angular.module('admissionsApp')
                 dismissable: true,
                 title: 'Correct',
                 data: data,
+                text: 'Make sure your information is correct, as it will be used to register you for MakerSquare.',
                 buttons: [{
                   classes: 'btn-success',
                   text: 'Confirm',
@@ -82,14 +83,13 @@ angular.module('admissionsApp')
            */
           return function() {
             var args = Array.prototype.slice.call(arguments),
-                name = args.shift(),
                 deleteModal;
 
             deleteModal = openModal({
               modal: {
                 dismissable: true,
                 title: 'Incorrect',
-                html: '<p>Are you sure you want to delete <strong>' + name + '</strong> ?</p>',
+                text: 'There are errors. Try again.'
               }
             }, 'modal-danger');
 
