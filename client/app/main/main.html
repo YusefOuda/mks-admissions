@@ -1,12 +1,27 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <div id="editor">function getContactInfo() {
-  // Modify this object to include your name and email
-  var info = {};
-  return info;
-}</div>
-      <button ng-click="submit()">Submit</button>
+      <div class="instructions">
+        <p>
+          Create an object with the following properties:
+        </p>
+        <p>
+          full_name, email, skype, and github.
+        </p>
+        <p>
+          Enter your real info for the values and we will register you as a prospective student. Github can be null.
+        </p>
+      </div>
+      <div class="editor-wrapper">
+        <div id="editor">
+		function getContactInfo() {
+  			// Modify this object to include your name and email
+  			var info = {};
+  			return info;
+		}
+		</div>
+        <button class="submit" ng-click="submit()">Submit</button>
+      </div>
     </div>
   </div>
 </div>
