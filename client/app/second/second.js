@@ -3,9 +3,9 @@
 angular.module('admissionsApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('main', {
+      .state('second', {
         url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'app/second/second.html',
+        controller: 'SecondCtrl'
       });
   });

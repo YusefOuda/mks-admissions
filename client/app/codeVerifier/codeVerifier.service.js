@@ -15,22 +15,6 @@ angular.module('admissionsApp')
       return result;
     };
 
-    var checkCorrectness = function(userAnswer) {
-      var objectLength = Object.keys(userAnswer).length;
-      var isCorrect = false;
-      if (objectLength === 4) {
-        if (userAnswer.hasOwnProperty('fullName') && userAnswer.hasOwnProperty('email') &&
-          userAnswer.hasOwnProperty('skype') && userAnswer.hasOwnProperty('github')) {
-          isCorrect = true;
-        }
-      }
-      return isCorrect;
-    };
-
-    this.checkCorrectness = function(userAnswer){
-      return checkCorrectness(userAnswer);
-    };
-
     this.runSandbox = function(code, methodToCheck, callback){
       var sandbox = $.sandbox({
         timeout: 5000,

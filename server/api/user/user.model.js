@@ -9,7 +9,7 @@ var UserSchema = new Schema({
   skype: String,
   github: String,
   cohort_choice: String,
-  current_challenge: Number
+  current_challenge: String
 });
 
 module.exports = mongoose.model('User', UserSchema);
