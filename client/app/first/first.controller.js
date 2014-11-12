@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('admissionsApp')
-  .controller('FirstCtrl', function ($scope, Modal, codeVerifier, userService, cookieService) {
+  .controller('FirstCtrl', function ($scope, Modal, codeVerifier, userService, cookieService, intercomService) {
     
     $scope.editor = ace.edit('editor');
     $scope.editor.getSession().setMode('ace/mode/javascript');
