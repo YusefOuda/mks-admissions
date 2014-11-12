@@ -1,3 +1,29 @@
-<div class="col-md-12">
-This is the second view.
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="instructions">
+        <p>
+          Write a function getCohortChoice() that selectsthe MakerSquare cohort you would like to apply for.
+        </p>
+        <p>
+          We'll add your choice to your account for consideration.
+        </p>
+      </div>
+      <div class="editor-wrapper">
+        <div id="editor">function getContactInfo() {
+  // Select from the following object the MKS cohort you would like to apply for. Return it from your function.
+  
+  var cohorts = {
+    austin: ["10","11","12"],
+    sanFrancisco: ["3","4","5"]
+  };
+
+  var cohortChoice = cohorts[austin][1];
+
+  return cohortChoice;
+}</div>
+        <button class="submit" ng-click="submit()">Submit</button>
+      </div>
+    </div>
+  </div>
 </div>
