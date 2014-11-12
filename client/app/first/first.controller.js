@@ -40,9 +40,11 @@ angular.module('admissionsApp')
             userService.createUser($scope.userAnswer)
               .success(function(data) {
                 cookieService.setCookie(data._id);
-                intercomService.pageRefresh({
+                intercomService.createUser({
                   app_id: 'idn465wg',
-                  email: 'yiouda92@gmail.com'
+                  email: data.email,
+                  fullName: data.fullName,
+                  current_challenge: data.current_challenge
                 })
                 $scope.routeUser();
               });

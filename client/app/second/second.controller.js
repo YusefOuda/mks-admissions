@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('admissionsApp')
-  .controller('SecondCtrl', function ($scope, $state, Modal, codeVerifier, userService, cookieService) {
+  .controller('SecondCtrl', function ($scope, $state, Modal, codeVerifier, userService, cookieService, intercomService) {
     
     $scope.routeUser = function() {
-      var userCookie = cookieService.getCookie();
-      userService.getUser(userCookie)
+      $scope.userCookie = cookieService.getCookie();
+      userService.getUser($scope.userCookie)
         .success(function(user){
           $state.go(user.current_challenge);
         });
@@ -19,14 +19,21 @@ angular.module('admissionsApp')
       var code = $scope.editor.getValue();
 
       var checkCorrectness = function(userAnswer) {
-        var objectLength = Object.keys(userAnswer).length;
+        console.log(userAnswer);
         var isCorrect = false;
-        if (objectLength === 4) {
-          if (userAnswer.hasOwnProperty('fullName') && userAnswer.hasOwnProperty('email') &&
-            userAnswer.hasOwnProperty('skype') && userAnswer.hasOwnProperty('github')) {
-            isCorrect = true;
+
+        var cohorts = {
+            austin: ["10","11","12"],
+            sanFrancisco: ["3","4","5"]
+          };
+
+        for(var location in cohorts) {
+          for(var i = 0; i < cohorts[location].length; i++) {
+            if (cohorts[location][i] === userAnswer)
+              isCorrect = true;
           }
         }
+
         return isCorrect;
       };
 
@@ -36,18 +43,21 @@ angular.module('admissionsApp')
         var answerModal;
         if (checkCorrectness($scope.userAnswer)){
           answerModal = Modal.confirm.correct(function() {
-            $scope.userAnswer.current_challenge = 'third';
-            // userService.createUser($scope.userAnswer)
-            //   .success(function(data, status, headers, config) {
-            //     cookieService.setCookie(data._id);
-            //     // intercom service
-            //   });
+            userService.updateUser($scope.userCookie, $scope.userAnswer, 'third')
+              .success(function(data) {
+                intercomService.updateUser({
+                  app_id: 'idn465wg',
+                  email: data.email,
+                  current_challenge: data.current_challenge,
+                  cohort_choice: data.cohort_choice
+                });
+              });
             $scope.routeUser();
           });
         }else {
           answerModal = Modal.confirm.incorrect();
         }
-        answerModal($scope.userAnswer);
+        answerModal({cohort_choice: $scope.userAnswer});
       });
     };
   });
