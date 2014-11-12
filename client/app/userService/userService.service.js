@@ -11,7 +11,7 @@ angular.module('admissionsApp')
         return $http.post('/api/users/', user);
     };
 
-    this.updateUser = function(id, cohort_choice, current_challenge) {
-        return $http.put('/api/users/' + id, {cohort_choice: cohort_choice, current_challenge: current_challenge});
+    this.updateUser = function(user) {
+        return $http.put('/api/users/' + user._id, user);
     };
   });

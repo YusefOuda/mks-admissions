@@ -43,7 +43,11 @@ angular.module('admissionsApp')
         var answerModal;
         if (checkCorrectness($scope.userAnswer)){
           answerModal = Modal.confirm.correct(function() {
-            userService.updateUser($scope.userCookie, $scope.userAnswer, 'behavioralInterview')
+            userService.updateUser({
+              _id: $scope.userCookie,
+              cohort_choice: $scope.userAnswer,
+              current_challenge: 'behavioralInterview'
+            })
               .success(function(data) {
                 intercomService.updateUser({
                   app_id: 'idn465wg',
