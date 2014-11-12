@@ -6,6 +6,6 @@ angular.module('admissionsApp')
       .state('behavioralInterview', {
         url: '/',
         templateUrl: 'app/behavioralInterview/behavioralInterview.html',
-        controller: 'BehavioralinterviewCtrl'
+        controller: 'BehavioralInterviewCtrl'
       });
   });

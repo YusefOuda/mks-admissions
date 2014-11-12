@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: BehavioralInterviewCtrl', function () {
+describe('Controller: BankingChallengeCtrl', function () {
 
   // load the controller's module
   beforeEach(module('admissionsApp'));
 
-  var BehavioralinterviewCtrl, scope;
+  var BankingchallengeCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    BehavioralinterviewCtrl = $controller('BehavioralInterviewCtrl', {
+    BankingchallengeCtrl = $controller('BankingChallengeCtrl', {
       $scope: scope
     });
   }));
