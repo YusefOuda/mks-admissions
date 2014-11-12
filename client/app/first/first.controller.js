@@ -31,7 +31,10 @@ angular.module('admissionsApp')
             userService.createUser($scope.userAnswer)
               .success(function(data, status, headers, config) {
                 cookieService.setCookie(data._id);
-                // intercom service
+                intercomService.pageRefresh({
+                  app_id: 'idn465wg',
+                  email: 'yiouda92@gmail.com'
+                })
               });
           });
         }else {
