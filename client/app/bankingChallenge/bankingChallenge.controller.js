@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('admissionsApp')
-  .controller('BehavioralInterviewCtrl', function ($scope, $state, cookieService, userService, intercomService) {
+  .controller('BankingChallengeCtrl', function ($scope, $state, cookieService, userService, intercomService) {
     $scope.routeUser = function() {
       var userCookie = cookieService.getCookie();
       userService.getUser(userCookie)
@@ -9,7 +9,7 @@ angular.module('admissionsApp')
           $state.go(user.current_challenge);
         })
         .error(function() {
-        	$state.go('first');
+          $state.go('first');
         });
     };
 
@@ -21,7 +21,7 @@ angular.module('admissionsApp')
 
       //If this isn't possible, load a confirmation modal that makes sure people understand that they need to set up their appointment
       //and will not be able to return.
-      userService.updateUser($scope.userCookie, $scope.userAnswer, 'bankingChallenge')
+      userService.updateUser($scope.userCookie, 'technicalInterview')
         .success(function(data) {
           intercomService.updateUser({
             app_id: 'idn465wg',
@@ -32,4 +32,3 @@ angular.module('admissionsApp')
       $scope.routeUser();
     };
   });
-
