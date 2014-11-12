@@ -1,17 +1,11 @@
 'use strict';
 
 angular.module('admissionsApp')
-  .controller('SecondCtrl', function ($scope, $state, Modal, codeVerifier, userService, cookieService, intercomService) {
-    
-    $scope.routeUser = function() {
-      $scope.userCookie = cookieService.getCookie();
-      userService.getUser($scope.userCookie)
-        .success(function(user){
-          $state.go(user.current_challenge);
-        });
-    };
+  .controller('SecondCtrl', function ($scope, $state, Modal, codeVerifier, userService, cookieService, intercomService, routeService) {
 
-    $scope.routeUser();
+  $scope.userCookie = routeService.routeUser();
+
+
     $scope.editor = ace.edit('editor');
     $scope.editor.getSession().setMode('ace/mode/javascript');
 
@@ -56,7 +50,7 @@ angular.module('admissionsApp')
                   cohort_choice: data.cohort_choice
                 });
               });
-            $scope.routeUser();
+            routeService.routeUser();
           });
         }else {
           answerModal = Modal.confirm.incorrect();

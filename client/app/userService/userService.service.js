@@ -11,7 +11,6 @@ angular.module('admissionsApp')
       return $http.post('/api/users/', user);
     };
 
-<<<<<<< HEAD
     this.updateUser = function(user) {
       return $http.put('/api/users/' + user._id, user);
     };

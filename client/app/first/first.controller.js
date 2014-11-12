@@ -1,17 +1,9 @@
 'use strict';
 
 angular.module('admissionsApp')
-  .controller('FirstCtrl', function ($scope, $state, Modal, codeVerifier, userService, cookieService, intercomService) {
+  .controller('FirstCtrl', function ($scope, $state, Modal, codeVerifier, userService, cookieService, intercomService, routeService) {
     
-    $scope.routeUser = function() {
-      var userCookie = cookieService.getCookie();
-      userService.getUser(userCookie)
-        .success(function(user){
-          $state.go(user.current_challenge);
-        });
-    };
-
-    $scope.routeUser();
+		$scope.userCookie = routeService.routeUser();
     $scope.editor = ace.edit('editor');
     $scope.editor.getSession().setMode('ace/mode/javascript');
 
@@ -46,7 +38,7 @@ angular.module('admissionsApp')
                   fullName: data.fullName,
                   current_challenge: data.current_challenge
                 })
-                $scope.routeUser();
+                routeService.routeUser();
               });
           });
         }else {

@@ -1,19 +1,8 @@
 'use strict';
 
 angular.module('admissionsApp')
-  .controller('BankingChallengeCtrl', function ($scope, $state, cookieService, userService, intercomService) {
-    $scope.routeUser = function() {
-      var userCookie = cookieService.getCookie();
-      userService.getUser(userCookie)
-        .success(function(user){
-          $state.go(user.current_challenge);
-        })
-        .error(function() {
-          $state.go('first');
-        });
-    };
-
-    $scope.routeUser();
+  .controller('BankingChallengeCtrl', function ($scope, $state, cookieService, userService, intercomService, routeService) {
+    $scope.userCookie = routeService.routeUser();
 
     $scope.submit = function() {
       //Ideally, find a way to return a value out of the iframe that lets this submit route you, and otherwise
@@ -21,7 +10,10 @@ angular.module('admissionsApp')
 
       //If this isn't possible, load a confirmation modal that makes sure people understand that they need to set up their appointment
       //and will not be able to return.
-      userService.updateUser($scope.userCookie, 'technicalInterview')
+      userService.updateUser({
+        _id: $scope.userCookie,
+        current_challenge: 'technicalInterview'
+      })
         .success(function(data) {
           intercomService.updateUser({
             app_id: 'idn465wg',
@@ -29,6 +21,6 @@ angular.module('admissionsApp')
             current_challenge: data.current_challenge
           });
         });
-      $scope.routeUser();
+      routeService.routeUser();
     };
   });
