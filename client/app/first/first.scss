@@ -8,7 +8,6 @@
 #editor {
     width: 500px;
     height: 400px;
-    border: 1px solid red;
 }
 
 .submit {
@@ -18,12 +17,15 @@
 
 .editor-wrapper {
     float: left;
-    border: 1px solid red;
 }
 
 .instructions {
     float: left;
-    border: 1px solid red;
     width: 500px;
     height: 400px;
+    padding: 1em;
+}
+
+.application {
+    margin-top: 2em;
 }
