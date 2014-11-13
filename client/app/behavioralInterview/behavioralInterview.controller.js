@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('admissionsApp')
-  .controller('BehavioralInterviewCtrl', function ($scope, $state, cookieService, userService, intercomService, routeService) {
+  .controller('BehavioralInterviewCtrl', function ($scope, $state, userService, intercomService, routeService) {
   	$scope.userCookie = routeService.routeUser();
 
     $scope.submit = function() {

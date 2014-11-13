@@ -37,7 +37,7 @@ angular.module('admissionsApp')
                   email: data.email,
                   fullName: data.fullName,
                   current_challenge: data.current_challenge
-                })
+                });
                 routeService.routeUser();
               });
           });
