@@ -8,6 +8,10 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
  * App-wide Styles
  */
 
+body {
+	background-color: #cee2f7;
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -21,5 +25,6 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'behavioralInterview/behavioralInterview.scss';
 @import 'first/first.scss';
 @import 'second/second.scss';
+@import 'technicalInterview/technicalInterview.scss';
 @import 'modal/modal.scss';
 // endinjector

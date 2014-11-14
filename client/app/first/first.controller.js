@@ -6,6 +6,7 @@ angular.module('admissionsApp')
 		$scope.userCookie = routeService.routeUser();
     $scope.editor = ace.edit('editor');
     $scope.editor.getSession().setMode('ace/mode/javascript');
+    $scope.editor.getSession().setUseWrapMode(true);
 
     $scope.submit = function() {
       var code = $scope.editor.getValue();
